@@ -379,6 +379,62 @@
     color: var(--ink-soft);
     margin: -6px 20px 14px 20px;
   }
+
+  /* ---- Desktop / wide screens ---- */
+  @media (min-width: 860px) {
+    html, body { background: var(--paper); }
+    body {
+      display: flex;
+      justify-content: center;
+      padding-top: max(env(safe-area-inset-top, 0px), 36px);
+      padding-bottom: 36px;
+    }
+    .wrap {
+      max-width: 900px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 14px 40px rgba(20,30,25,0.06);
+      padding-bottom: 8px;
+      min-height: unset;
+    }
+    header { padding: 34px 40px 0 40px; }
+    h1 { font-size: 32px; }
+    .subtitle { margin-bottom: 24px; }
+
+    .week-nav { padding: 0 40px 16px 40px; }
+    .nav-btn { width: 40px; height: 40px; font-size: 18px; }
+    .week-nav .label strong { font-size: 19px; }
+
+    .view-tabs { max-width: 260px; margin: 0 40px 20px 40px; }
+
+    .day-strip { padding: 0 40px 20px 40px; gap: 10px; }
+    .day-pill { padding: 12px 4px 14px 4px; cursor: pointer; transition: transform .12s ease; }
+    .day-pill:hover { transform: translateY(-2px); }
+    .day-pill .dnum { font-size: 21px; }
+
+    main { padding: 4px 40px 40px 40px; }
+    .agenda-date { font-size: 17px; }
+
+    .lesson-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .lesson { padding: 16px 18px; }
+    .lesson:hover { border-color: var(--accent); }
+    .lesson .subject { font-size: 15px; }
+
+    .week-range-label { margin-left: 40px; margin-right: 40px; font-size: 13px; }
+    .week-grid-wrap { margin: 0 40px 8px 40px; }
+    .week-grid { grid-template-columns: 56px repeat(5, minmax(0, 1fr)); }
+    .wg-body { grid-template-columns: 56px repeat(5, minmax(0, 1fr)); }
+    .wg-head .dnum { font-size: 18px; }
+    .wg-time-label { font-size: 10.5px; right: 10px; }
+    .wg-block { left: 4px; right: 4px; border-radius: 7px; padding: 5px 7px; cursor: pointer; transition: filter .12s ease; }
+    .wg-block:hover { filter: brightness(1.06); }
+    .wg-block .b-subj { font-size: 11px; }
+    .wg-block .b-room { font-size: 9.5px; }
+
+    footer { padding: 6px 40px 30px 40px; }
+  }
 </style>
 </head>
 <body>
