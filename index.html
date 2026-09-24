@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Orario — Marketing, Consumi e Comunicazione</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
     --paper: #F7F6F2;
@@ -19,7 +16,7 @@
     --cancel-bg: #EDEBE5;
     --cancel-text: #8B8577;
     --today-ring: #C9622B;
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   :root:not([data-theme="light"]) {
     @media (prefers-color-scheme: dark) {
@@ -69,7 +66,7 @@
     background: var(--paper);
   }
   .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 11px;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
@@ -102,8 +99,8 @@
   :root[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
   :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
     font-size: 26px;
     line-height: 1.15;
     margin: 0 0 2px 0;
@@ -129,8 +126,8 @@
   }
   .week-nav .label strong {
     display: block;
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
     font-size: 16px;
     color: var(--ink);
   }
@@ -177,9 +174,9 @@
     margin-bottom: 4px;
   }
   .day-pill .dnum {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
   }
   .day-pill .dot {
     width: 5px; height: 5px; border-radius: 50%;
@@ -200,7 +197,7 @@
   main { flex: 1; padding: 4px 20px 32px 20px; }
 
   .agenda-date {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 15px;
     color: var(--ink-soft);
     margin: 6px 2px 14px 2px;
@@ -224,7 +221,7 @@
     flex-shrink: 0;
   }
   .lesson .time {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12.5px;
     color: var(--ink-soft);
     white-space: nowrap;
@@ -249,7 +246,7 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 4px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 10.5px;
     letter-spacing: 0.04em;
     color: var(--today-ring);
@@ -261,7 +258,7 @@
     color: var(--ink-soft);
   }
   .empty .glyph {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 34px;
     margin-bottom: 10px;
     color: var(--line);
@@ -276,7 +273,7 @@
     border: none;
     background: none;
     color: var(--accent);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12.5px;
     font-weight: 500;
     cursor: pointer;
@@ -297,7 +294,7 @@
     border: none;
     background: none;
     padding: 8px 0;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12.5px;
     font-weight: 500;
     color: var(--ink-soft);
@@ -332,9 +329,9 @@
     color: var(--ink-soft);
   }
   .wg-head .dnum {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 700;
     margin-top: 1px;
   }
   .wg-head.is-today .dnum {
@@ -358,7 +355,7 @@
     position: absolute;
     right: 6px;
     transform: translateY(-50%);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 9px;
     color: var(--ink-soft);
   }
@@ -528,7 +525,7 @@ document.getElementById('themeToggle').addEventListener('click', function(){
   try { localStorage.setItem('orario-theme', next); } catch(e) {}
 });
 
-const LESSONS = [{"date": "2026-09-21", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-09-22", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-22", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-23", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-24", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-24", "start": "15:00", "end": "18:00", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-25", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-28", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-09-28", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-09-29", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-29", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-30", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-01", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-01", "start": "15:00", "end": "18:00", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-02", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-05", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-10-05", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-06", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-06", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-07", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-08", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-08", "start": "15:00", "end": "18:00", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-09", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-12", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-10-12", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-13", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-13", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-14", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-15", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-16", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-19", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-10-19", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-20", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-20", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-21", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-22", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-23", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-26", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-27", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-27", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-28", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 603 [IULM 6]", "cancelled": false}, {"date": "2026-10-28", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-29", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 125 [IULM 1]", "cancelled": false}, {"date": "2026-10-30", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-11-06", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "lezione online", "cancelled": false}, {"date": "2026-11-10", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-11", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-11-11", "start": "15:00", "end": "18:00", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 612 [IULM 6]", "cancelled": false}, {"date": "2026-11-12", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": true}, {"date": "2026-11-16", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-11-16", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-17", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-18", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-11-19", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-11-23", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-24", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-25", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": true}, {"date": "2026-11-25", "start": "15:00", "end": "18:00", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 612 [IULM 6]", "cancelled": false}, {"date": "2026-11-26", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-11-26", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-11-30", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-11-30", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-01", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-02", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-03", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-12-09", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-10", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-12-11", "start": "13:30", "end": "16:30", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-12-14", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-12-14", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-15", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-16", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-17", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": true}];
+const LESSONS = [{"date": "2026-09-21", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-09-22", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-22", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-23", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-24", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-24", "start": "14:30", "end": "17:30", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-25", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-28", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-09-28", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-09-29", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-09-29", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-09-30", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-01", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-01", "start": "14:30", "end": "17:30", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-02", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-05", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-10-05", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-06", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-06", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-07", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-08", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-08", "start": "14:30", "end": "17:30", "subject": "EXCEL PER IL MARKETING GRUPPO 1", "room": "Aula 521 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-09", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-12", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-10-12", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-13", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-13", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-14", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-15", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-16", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-19", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-10-19", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-20", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-20", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-21", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-22", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-10-23", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-26", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-10-27", "start": "09:00", "end": "12:00", "subject": "PRATICHE DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-10-27", "start": "13:30", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-28", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 603 [IULM 6]", "cancelled": false}, {"date": "2026-10-28", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 532 - informatica [IULM 5]", "cancelled": false}, {"date": "2026-10-29", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 125 [IULM 1]", "cancelled": false}, {"date": "2026-10-30", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "Aula 113 [IULM 1]", "cancelled": false}, {"date": "2026-11-06", "start": "10:30", "end": "13:30", "subject": "SCENARI DI CONSUMO (Gruppo 1)", "room": "lezione online", "cancelled": false}, {"date": "2026-11-10", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-11", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-11-11", "start": "15:00", "end": "18:00", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 612 [IULM 6]", "cancelled": false}, {"date": "2026-11-12", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": true}, {"date": "2026-11-16", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-11-16", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-17", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-18", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-11-19", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-11-23", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-24", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-11-25", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": true}, {"date": "2026-11-25", "start": "15:00", "end": "18:00", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 612 [IULM 6]", "cancelled": false}, {"date": "2026-11-26", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-11-26", "start": "15:00", "end": "16:30", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-11-30", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-11-30", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-01", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-02", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-03", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-12-09", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-10", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": false}, {"date": "2026-12-11", "start": "13:30", "end": "16:30", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 512 [IULM 5]", "cancelled": false}, {"date": "2026-12-14", "start": "10:30", "end": "13:30", "subject": "RETAIL EXPERIENCE (Gruppo 1)", "room": "Aula 156 [IULM 1]", "cancelled": false}, {"date": "2026-12-14", "start": "15:00", "end": "18:00", "subject": "MARKETING AVANZATO (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-15", "start": "09:00", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 511 [IULM 5]", "cancelled": false}, {"date": "2026-12-16", "start": "10:30", "end": "12:00", "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)", "room": "Aula 134 [IULM 1]", "cancelled": false}, {"date": "2026-12-17", "start": "10:30", "end": "13:30", "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)", "room": "Aula 143 - informatica [IULM 1]", "cancelled": true}];
 
 const SUBJECT_COLORS = {
   "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)": "#5E82A8",
