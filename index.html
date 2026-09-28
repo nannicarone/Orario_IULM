@@ -269,6 +269,7 @@
     padding: 10px 20px 18px 20px;
     text-align: center;
   }
+  .data-status { margin: 2px 0 0 0; font-size: 11px; color: var(--ink-soft); }
   footer button {
     border: none;
     background: none;
@@ -505,6 +506,7 @@
 
   <footer>
     <button id="todayBtn">Vai a oggi</button>
+    <p class="data-status" id="dataStatus"></p>
   </footer>
 </div>
 
@@ -537,6 +539,18 @@ const SUBJECT_COLORS = {
   "SCENARI DI CONSUMO (Gruppo 1)": "#B57654"
 };
 
+// >>> Incolla qui il link CSV pubblicato da Google Sheets (File > Condividi > Pubblica sul web > CSV)
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTxKf8N1vv5B5UiVN9m-DfUn0dFivUZGHWyblWZhH1MZWM9pnvRQbumKI6diX0lcqZxb716p19zz4u9/pub?gid=1790969933&single=true&output=csv";
+
+const FALLBACK_PALETTE = ["#5E82A8","#8FA75E","#9B7BB8","#C9A24A","#C97B8E","#4FA394","#B57654","#7A8CA0","#A8666B","#6E9A5B"];
+function colorFor(subject){
+  if (SUBJECT_COLORS[subject]) return SUBJECT_COLORS[subject];
+  let h = 0;
+  for (const c of subject) h = (h*31 + c.charCodeAt(0)) >>> 0;
+  SUBJECT_COLORS[subject] = FALLBACK_PALETTE[h % FALLBACK_PALETTE.length];
+  return SUBJECT_COLORS[subject];
+}
+
 const DAY_NAMES = ["Lun","Mar","Mer","Gio","Ven"];
 const DAY_NAMES_FULL = ["Lunedì","Martedì","Mercoledì","Giovedì","Venerdì"];
 const MONTHS = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
@@ -547,17 +561,26 @@ function sameDay(a,b){ return toKey(a)===toKey(b); }
 function mondayOf(d){ const day=(d.getDay()+6)%7; const r=new Date(d); r.setDate(d.getDate()-day); r.setHours(0,0,0,0); return r; }
 function addDays(d,n){ const r=new Date(d); r.setDate(d.getDate()+n); return r; }
 
-const lessonsByDate = {};
-LESSONS.forEach(l => { (lessonsByDate[l.date] = lessonsByDate[l.date] || []).push(l); });
-
-const allDates = Object.keys(lessonsByDate).sort();
+let lessonsByDate = {};
+let allDates = [];
 const today = new Date(); today.setHours(0,0,0,0);
-const firstLessonDate = parseDate(allDates[0]);
-const lastLessonDate = parseDate(allDates[allDates.length-1]);
+let firstLessonDate, lastLessonDate, clampedToday;
 
-let clampedToday = today;
-if (today < firstLessonDate) clampedToday = firstLessonDate;
-if (today > lastLessonDate) clampedToday = lastLessonDate;
+function setLessons(list){
+  const byDate = {};
+  list.forEach(l => { (byDate[l.date] = byDate[l.date] || []).push(l); });
+  const dates = Object.keys(byDate).sort();
+  if (!dates.length) return false;
+  lessonsByDate = byDate;
+  allDates = dates;
+  firstLessonDate = parseDate(dates[0]);
+  lastLessonDate = parseDate(dates[dates.length-1]);
+  clampedToday = today;
+  if (today < firstLessonDate) clampedToday = firstLessonDate;
+  if (today > lastLessonDate) clampedToday = lastLessonDate;
+  return true;
+}
+setLessons(LESSONS);
 
 let currentMonday = mondayOf(clampedToday);
 let selected = sameDay(today, clampedToday) ? today : clampedToday;
@@ -609,7 +632,7 @@ function render(){
   items.forEach(l => {
     const el = document.createElement('div');
     el.className = 'lesson' + (l.cancelled ? ' cancelled' : '');
-    const color = SUBJECT_COLORS[l.subject] || '#888888';
+    const color = colorFor(l.subject);
     el.innerHTML =
       '<div class="bar" style="background:'+color+'"></div>'
       + '<div class="time">'+l.start+'<br>'+l.end+'</div>'
@@ -718,7 +741,7 @@ function renderWeekGrid(){
       block.className = 'wg-block' + (l.cancelled ? ' cancelled':'');
       block.style.top = top+'px';
       block.style.height = height+'px';
-      if (!l.cancelled) block.style.background = SUBJECT_COLORS[l.subject] || '#888888';
+      if (!l.cancelled) block.style.background = colorFor(l.subject);
       const shortSubj = l.subject.replace(' (Gruppo 1)','').replace(' GRUPPO 1','');
       block.innerHTML = '<span class="b-subj">'+shortSubj+'</span>'
         + (height > 32 ? '<span class="b-room">'+(l.room||'')+'</span>' : '');
@@ -755,6 +778,79 @@ render = function(){
 };
 
 render();
+
+// ---- Google Sheets loader ----
+function parseCSV(text){
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i=0; i<text.length; i++){
+    const c = text[i];
+    if (q){
+      if (c === '"'){ if (text[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ','){ row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r'){
+      if (c === '\r' && text[i+1] === '\n') i++;
+      row.push(cell); cell = ''; rows.push(row); row = [];
+    } else cell += c;
+  }
+  if (cell !== '' || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+const pad2 = n => String(n).padStart(2,'0');
+function normDate(s){
+  s = (s||'').trim(); let m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1]+'-'+pad2(m[2])+'-'+pad2(m[3]);
+  if ((m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})/))){
+    const y = m[3].length === 2 ? '20'+m[3] : m[3];
+    return y+'-'+pad2(m[2])+'-'+pad2(m[1]);
+  }
+  return null;
+}
+function normTime(s){
+  const m = (s||'').trim().match(/^(\d{1,2})[:.](\d{2})/);
+  return m ? pad2(m[1])+':'+m[2] : null;
+}
+function parseLessonsCSV(text){
+  const rows = parseCSV(text).filter(r => r.some(c => c.trim() !== ''));
+  if (rows.length < 2) return [];
+  const head = rows[0].map(h => h.trim().toLowerCase());
+  const find = (...names) => head.findIndex(h => names.some(n => h.includes(n)));
+  const iDate = find('data','date'), iStart = find('inizio','start','dalle'), iEnd = find('fine','end','alle'),
+        iSubj = find('materia','subject','corso'), iRoom = find('aula','room','luogo'),
+        iCanc = find('annull','cancel');
+  if (iDate < 0 || iStart < 0 || iEnd < 0 || iSubj < 0) return [];
+  const out = [];
+  rows.slice(1).forEach(r => {
+    const date = normDate(r[iDate]), start = normTime(r[iStart]), end = normTime(r[iEnd]);
+    const subject = (r[iSubj]||'').trim();
+    if (!date || !start || !end || !subject) return;
+    out.push({
+      date, start, end, subject,
+      room: iRoom >= 0 ? (r[iRoom]||'').trim() : '',
+      cancelled: iCanc >= 0 ? /^(si|sì|true|vero|yes|x|1)$/i.test((r[iCanc]||'').trim()) : false
+    });
+  });
+  return out;
+}
+
+async function loadFromSheet(){
+  const status = document.getElementById('dataStatus');
+  if (!SHEET_CSV_URL){ return; }
+  try {
+    const url = SHEET_CSV_URL + (SHEET_CSV_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+    const r = await fetch(url, { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP '+r.status);
+    const list = parseLessonsCSV(await r.text());
+    if (!list.length) throw new Error('empty');
+    setLessons(list);
+    render();
+    status.textContent = 'Orario sincronizzato con Google Sheets';
+  } catch(e){
+    status.textContent = 'Foglio non raggiungibile: mostro l\u2019ultima versione salvata';
+  }
+}
+loadFromSheet();
 </script>
 </body>
 </html>
