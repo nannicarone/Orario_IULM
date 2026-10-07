@@ -270,12 +270,6 @@
     text-align: center;
   }
   .data-status { margin: 2px 0 0 0; font-size: 11px; color: var(--ink-soft); }
-  .footer-row { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
-  #exportBtn {
-    border: 1px solid var(--line) !important;
-    border-radius: 8px;
-    background: var(--card) !important;
-  }
   footer button {
     border: none;
     background: none;
@@ -513,10 +507,7 @@
   </main>
 
   <footer>
-    <div class="footer-row">
-      <button id="todayBtn">Vai a oggi</button>
-      <button id="exportBtn">📅 Esporta calendario</button>
-    </div>
+    <button id="todayBtn">Vai a oggi</button>
     <p class="data-status" id="dataStatus"></p>
   </footer>
 </div>
@@ -864,89 +855,6 @@ async function loadFromSheet(){
   }
 }
 loadFromSheet();
-
-// ---- Esporta calendario (.ics) ----
-const ICS_TZ_BLOCK =
-'BEGIN:VTIMEZONE\r\n' +
-'TZID:Europe/Rome\r\n' +
-'X-LIC-LOCATION:Europe/Rome\r\n' +
-'BEGIN:DAYLIGHT\r\n' +
-'TZOFFSETFROM:+0100\r\n' +
-'TZOFFSETTO:+0200\r\n' +
-'TZNAME:CEST\r\n' +
-'DTSTART:19700329T020000\r\n' +
-'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\n' +
-'END:DAYLIGHT\r\n' +
-'BEGIN:STANDARD\r\n' +
-'TZOFFSETFROM:+0200\r\n' +
-'TZOFFSETTO:+0100\r\n' +
-'TZNAME:CET\r\n' +
-'DTSTART:19701025T030000\r\n' +
-'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\n' +
-'END:STANDARD\r\n' +
-'END:VTIMEZONE\r\n';
-
-function icsEscape(s){
-  return (s || '').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
-}
-function icsDateTime(dateStr, timeStr){
-  return dateStr.replace(/-/g,'') + 'T' + timeStr.replace(':','') + '00';
-}
-function foldLine(line){
-  // RFC5545: fold lines longer than 75 octets
-  if (line.length <= 75) return line;
-  let out = line.slice(0,75);
-  let rest = line.slice(75);
-  while (rest.length > 0){
-    out += '\r\n ' + rest.slice(0,74);
-    rest = rest.slice(74);
-  }
-  return out;
-}
-
-function generateICS(){
-  const now = new Date();
-  const stamp = now.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-  const lines = [];
-  lines.push('BEGIN:VCALENDAR');
-  lines.push('VERSION:2.0');
-  lines.push('PRODID:-//Orario IULM//Marketing Consumi e Comunicazione//IT');
-  lines.push('CALSCALE:GREGORIAN');
-  lines.push('METHOD:PUBLISH');
-  lines.push('X-WR-CALNAME:Orario — Marketing, Consumi e Comunicazione');
-  lines.push(ICS_TZ_BLOCK.trim());
-
-  let n = 0;
-  allLessonsFlat.forEach(l => {
-    if (l.cancelled) return; // le lezioni annullate non vengono esportate
-    n++;
-    const uid = l.date.replace(/-/g,'') + '-' + l.start.replace(':','') + '-' + n + '@orario-iulm';
-    lines.push('BEGIN:VEVENT');
-    lines.push('UID:' + uid);
-    lines.push('DTSTAMP:' + stamp);
-    lines.push('DTSTART;TZID=Europe/Rome:' + icsDateTime(l.date, l.start));
-    lines.push('DTEND;TZID=Europe/Rome:' + icsDateTime(l.date, l.end));
-    lines.push(foldLine('SUMMARY:' + icsEscape(l.subject.replace(' (Gruppo 1)','').replace(' GRUPPO 1',''))));
-    if (l.room) lines.push(foldLine('LOCATION:' + icsEscape(l.room)));
-    lines.push('END:VEVENT');
-  });
-
-  lines.push('END:VCALENDAR');
-  return lines.join('\r\n');
-}
-
-document.getElementById('exportBtn').addEventListener('click', () => {
-  const ics = generateICS();
-  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'orario-marketing-consumi-comunicazione.ics';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-});
 </script>
 </body>
 </html>
