@@ -1,0 +1,51 @@
+name: Aggiorna orario
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # ogni 6 ore
+  workflow_dispatch:          # permette di avviarlo a mano dalla scheda Actions
+
+permissions:
+  contents: write
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installa dipendenze
+        run: |
+          pip install openpyxl
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-calc
+
+      - name: Scarica l'export dal sito dell'universita
+        env:
+          EXPORT_URL: 'https://gestionespazi.iulm.it/PortaleStudentiIulm/export/ec_download_xls_list.php?view=easycourse&form-type=corso&include=corso&txtcurr=&anno=2026&corso=384&anno2%5B%5D=PDS5-2025_GR_01%7C1&visualizzazione_orario=cal&date=21-09-2026&periodo_didattico=&_lang=it&list=1&week_grid_type=-1&ar_codes_=&ar_select_=&col_cells=0&empty_box=0&only_grid=0&highlighted_date=0&all_events=0&faculty_group=0&_lang=it&ar_codes_=ECIULM_14320_384_1_Dapra|ECIULM_0009_1_384_Ardiz-GR1|ECIULM_3927_384_1_Corsa|ECIULM_14305_384_1_Ivald|ECIULM_13938_384_1_Morta|ECIULM_14321_384_1_Zanni|ECIULM_14302_384_1_Gerin&ar_select_=true|true|true|true|true|true|true&txtaa=2026/2027&txtcorso=384%20-%20MARKETING,%20CONSUMI%20E%20COMUNICAZIONE%20(Laurea%20Magistrale)&txtanno=1%20-%20Gruppo%201%20(cognomi%20A-K)&docente=&attivita=&txtdocente=&txtattivita='
+        run: |
+          curl -fsSL --retry 3 --max-time 60 -A "Mozilla/5.0" -o export.xls "$EXPORT_URL"
+          file export.xls
+          ls -l export.xls
+
+      - name: Converti in xlsx
+        run: soffice --headless --convert-to xlsx --outdir converted export.xls
+
+      - name: Elabora l'orario
+        run: python scripts/parse_orario.py converted/export.xlsx lezioni.json
+
+      - name: Salva le modifiche
+        run: |
+          if [ -n "$(git status --porcelain lezioni.json)" ]; then
+            git config user.name "orario-bot"
+            git config user.email "orario-bot@users.noreply.github.com"
+            git add lezioni.json
+            git commit -F commit_msg.txt
+            git push
+          else
+            echo "Nessuna modifica da salvare."
+          fi
