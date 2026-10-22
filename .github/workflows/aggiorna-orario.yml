@@ -11,6 +11,7 @@ permissions:
 jobs:
   aggiorna:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 
@@ -19,10 +20,7 @@ jobs:
           python-version: '3.12'
 
       - name: Installa dipendenze
-        run: |
-          pip install openpyxl
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libreoffice-calc
+        run: pip install xlrd openpyxl
 
       - name: Scarica l'export dal sito dell'universita
         env:
@@ -32,11 +30,8 @@ jobs:
           file export.xls
           ls -l export.xls
 
-      - name: Converti in xlsx
-        run: soffice --headless --convert-to xlsx --outdir converted export.xls
-
       - name: Elabora l'orario
-        run: python scripts/parse_orario.py converted/export.xlsx lezioni.json
+        run: python scripts/parse_orario.py export.xls lezioni.json
 
       - name: Salva le modifiche
         run: |
