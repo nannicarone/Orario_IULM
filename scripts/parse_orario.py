@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Converte l'export Excel dell'orario IULM in lezioni.json.
 
-Uso: python scripts/parse_orario.py export.xlsx lezioni.json
+Uso: python scripts/parse_orario.py export.xls lezioni.json  (accetta anche .xlsx)
 
 - Se l'orario non e' cambiato rispetto a lezioni.json, non scrive nulla.
 - Se e' cambiato, aggiorna lezioni.json e scrive il riepilogo in commit_msg.txt.
@@ -13,16 +13,29 @@ import os
 import re
 import sys
 
-import openpyxl
-
 MIN_LESSONS = 20  # sotto questa soglia l'export e' considerato anomalo
 
 
-def parse(xlsx_path):
-    ws = openpyxl.load_workbook(xlsx_path, data_only=True).active
+def read_rows(path):
+    """Restituisce le righe del file Excel (.xls o .xlsx) come liste di valori."""
+    if path.lower().endswith(".xls"):
+        import xlrd
+        # il file dell'universita' ha una piccola anomalia interna: la ignoriamo
+        wb = xlrd.open_workbook(path, ignore_workbook_corruption=True)
+        sh = wb.sheet_by_index(0)
+        for r in range(sh.nrows):
+            yield [sh.cell_value(r, c) for c in range(sh.ncols)]
+    else:
+        import openpyxl
+        ws = openpyxl.load_workbook(path, data_only=True).active
+        for row in ws.iter_rows(values_only=True):
+            yield list(row)
+
+
+def parse(path):
     lessons, seen = [], set()
-    for row in ws.iter_rows(values_only=True):
-        c = list(row) + [None] * 8
+    for row in read_rows(path):
+        c = row + [None] * 8
         giorno, ora, materia, aula = c[1], c[2], c[3], c[6]
         if not (isinstance(giorno, str) and isinstance(ora, str) and isinstance(materia, str)):
             continue
@@ -82,8 +95,8 @@ def diff(old, new):
 def main():
     if len(sys.argv) != 3:
         sys.exit(__doc__)
-    xlsx, out = sys.argv[1], sys.argv[2]
-    new = parse(xlsx)
+    src, out = sys.argv[1], sys.argv[2]
+    new = parse(src)
     if len(new) < MIN_LESSONS:
         sys.exit(f"ERRORE: trovate solo {len(new)} lezioni (minimo {MIN_LESSONS}). "
                  "Il file scaricato non sembra un orario valido: non aggiorno nulla.")
