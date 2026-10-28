@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T19:57:22Z",
+ "updated": "2026-10-28T12:57:52Z",
  "lessons": [
   {
    "date": "2026-09-21",
@@ -411,14 +411,6 @@
   },
   {
    "date": "2026-11-16",
-   "start": "10:30",
-   "end": "13:30",
-   "subject": "RETAIL EXPERIENCE (Gruppo 1)",
-   "room": "Aula 156 [IULM 1]",
-   "cancelled": false
-  },
-  {
-   "date": "2026-11-16",
    "start": "15:00",
    "end": "18:00",
    "subject": "MARKETING AVANZATO (Gruppo 1)",
@@ -447,7 +439,7 @@
    "end": "16:30",
    "subject": "MARKETING AVANZATO (Gruppo 1)",
    "room": "Aula 156 [IULM 1]",
-   "cancelled": false
+   "cancelled": true
   },
   {
    "date": "2026-11-19",
@@ -455,6 +447,14 @@
    "end": "13:30",
    "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)",
    "room": "Aula 143 - informatica [IULM 1]",
+   "cancelled": false
+  },
+  {
+   "date": "2026-11-20",
+   "start": "10:30",
+   "end": "13:30",
+   "subject": "RETAIL EXPERIENCE (Gruppo 1)",
+   "room": "Aula 511 [IULM 5]",
    "cancelled": false
   },
   {
