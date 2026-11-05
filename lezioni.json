@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T19:47:01Z",
+ "updated": "2026-11-05T19:58:17Z",
  "lessons": [
   {
    "date": "2026-09-21",
@@ -611,16 +611,8 @@
   },
   {
    "date": "2026-12-16",
-   "start": "10:30",
+   "start": "09:00",
    "end": "12:00",
-   "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)",
-   "room": "Aula 522 - informatica [IULM 5]",
-   "cancelled": false
-  },
-  {
-   "date": "2026-12-16",
-   "start": "12:00",
-   "end": "13:30",
    "subject": "METODI QUANTITATIVI DI RICERCA (Gruppo 1)",
    "room": "Aula 522 - informatica [IULM 5]",
    "cancelled": false
