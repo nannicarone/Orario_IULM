@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T19:58:17Z",
+ "updated": "2026-11-17T20:57:06Z",
  "lessons": [
   {
    "date": "2026-09-21",
@@ -448,6 +448,14 @@
    "subject": "MARKETING AVANZATO (Gruppo 1)",
    "room": "Aula 156 [IULM 1]",
    "cancelled": true
+  },
+  {
+   "date": "2026-11-18",
+   "start": "15:00",
+   "end": "18:00",
+   "subject": "MARKETING AVANZATO (Gruppo 1)",
+   "room": "Aula 521 - informatica [IULM 5]",
+   "cancelled": false
   },
   {
    "date": "2026-11-19",
