@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T20:23:26Z",
+ "updated": "2026-11-24T09:56:15Z",
  "lessons": [
   {
    "date": "2026-09-21",
@@ -632,6 +632,14 @@
    "subject": "DIGITAL MARKETING and AI APPLICATIONS (Gruppo 1)",
    "room": "Aula 143 - informatica [IULM 1]",
    "cancelled": true
+  },
+  {
+   "date": "2026-12-18",
+   "start": "09:00",
+   "end": "10:30",
+   "subject": "MARKETING AVANZATO (Gruppo 1)",
+   "room": "Aula 111 [IULM 1]",
+   "cancelled": false
   },
   {
    "date": "2026-12-18",
